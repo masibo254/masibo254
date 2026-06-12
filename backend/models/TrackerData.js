@@ -10,10 +10,6 @@ const trackerDataSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User'
   },
-  trip: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Trip'
-  },
   
   // Location data
   location: {
@@ -42,20 +38,20 @@ const trackerDataSchema = new mongoose.Schema({
   },
   
   speedLimit: Number,
-  speedViolationDuration: Number, // in seconds
+  speedViolationDuration: Number,
   
   // Acceleration and braking
-  acceleration: Number, // g-force
+  acceleration: Number,
   harshAccelerationDetected: Boolean,
   
-  braking: Number, // g-force
+  braking: Number,
   harshBrakingDetected: Boolean,
   
   // Engine and fuel
   engineStatus: String,
   engineRPM: Number,
   fuelLevel: Number,
-  fuelConsumption: Number, // liters
+  fuelConsumption: Number,
   
   // Vehicle parameters
   odometer: Number,
@@ -65,43 +61,19 @@ const trackerDataSchema = new mongoose.Schema({
     cabin: Number
   },
   
-  // Tire pressure
-  tirePressure: {
-    frontLeft: Number,
-    frontRight: Number,
-    rearLeft: Number,
-    rearRight: Number
-  },
-  
   // Alerts and warnings
   alerts: [{
     type: String,
-    severity: String, // low, medium, high, critical
+    severity: String,
     message: String,
     timestamp: Date
   }],
-  
-  // Trip-related data
-  tripDistance: Number,
-  tripDuration: Number,
-  idleTime: Number,
-  
-  // Environmental conditions
-  weather: String,
-  roadCondition: String,
-  traffic: String, // light, moderate, heavy
   
   // Timestamp
   timestamp: {
     type: Date,
     default: Date.now,
     index: true
-  },
-  
-  // GPS accuracy
-  gpsQuality: {
-    satellites: Number,
-    hdop: Number // Horizontal Dilution of Precision
   }
 });
 
