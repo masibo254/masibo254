@@ -1,0 +1,22 @@
+services:
+  - type: web
+    name: fleet-management-backend
+    runtime: node
+    buildCommand: cd backend && npm install
+    startCommand: cd backend && npm start
+    envVars:
+      - key: MONGODB_URI
+        value: mongodb+srv://${DB_USER}:${DB_PASS}@cluster.mongodb.net/fleet-management
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 5000
+
+  - type: web
+    name: fleet-management-frontend
+    runtime: static
+    buildCommand: cd frontend && npm install && npm run build
+    staticPublishPath: frontend/build
+    envVars:
+      - key: REACT_APP_API_URL
+        value: https://fleet-management-backend.onrender.com
